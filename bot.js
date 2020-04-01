@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+var client = new Discord.Client();
 var auth = require('./auth.json');
 
 var d = new Date();
@@ -18,7 +18,7 @@ client.on('ready',()=>{
     
     console.log(`Logged in as ${client.user.tag}!`);
 
-    let guild = client.guilds.get(guildID);
+    //let guild = client.guilds.get(guildID);
 
 
 });
@@ -34,7 +34,7 @@ client.on('ready',()=>{
 
 var str, words;
 
-client.on('message', msg => {
+client.on('message', async msg => {
 
     str = msg.content;
     words=str.trim().split(" ");
@@ -52,8 +52,17 @@ client.on('message', msg => {
     }
 
     if(msg.content === '+ping'){
-        msg.reply('pong');
+        const m = await msg.reply('pong!');
+        m.edit(`Pong! Latency is ${m.createdTimestamp - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+
     }
+
+    if(words[0]==='roll'){
+        console.log(words[1]);
+        
+
+    }
+   
 
     if(msg.content === 'que horas são?'){
         msg.reply(n)
@@ -65,6 +74,6 @@ client.on('message', msg => {
 
 
 
-client.login('NjkxMzQ0MzA1MzEwMTM4MzY4.XnnoWw.PNGff5btZOX3Mzu2DwZfMHfqiKA');
+client.login(auth.token);
 
 
