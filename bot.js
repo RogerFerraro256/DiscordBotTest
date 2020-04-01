@@ -5,9 +5,32 @@ var auth = require('./auth.json');
 var d = new Date();
 var n = d.getTime();
 
+
+
 client.on('ready',()=>{
+    client.user.setPresence({
+        game: { 
+            name: 'minha vida no lixo',
+            type: 'Heck'
+        },
+        status: 'Coding'
+    })
+    
     console.log(`Logged in as ${client.user.tag}!`);
+
+    let guild = client.guilds.get(guildID);
+
+
 });
+
+
+
+
+
+
+//bot things
+// Create a new role with data and a reason
+
 
 var str, words;
 
@@ -15,6 +38,9 @@ client.on('message', msg => {
 
     str = msg.content;
     words=str.trim().split(" ");
+
+    if (msg.author.bot) return;
+
 
     if(msg.content!=''){
         console.log(words);
@@ -38,6 +64,7 @@ client.on('message', msg => {
 
 
 
-client.login('NjkxMzQ0MzA1MzEwMTM4MzY4.Xneo2Q.-jiVpRn7y9dCCWy45kEFo0ZtDEY');
+
+client.login('NjkxMzQ0MzA1MzEwMTM4MzY4.XnnoWw.PNGff5btZOX3Mzu2DwZfMHfqiKA');
 
 
